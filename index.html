@@ -1,0 +1,32 @@
+
+<body>
+  <script type="text/javascript" src='//www.midijs.net/lib/midi.js'>
+  window.onload = function () {
+    console.log("onload");
+  MIDI.loadPlugin({
+      soundfontUrl: "./soundfont/",
+      instrument: "acoustic_grand_piano",
+      onprogress: function(state, progress) {
+          console.log(state, progress);
+      },
+      onsuccess: function() {
+          var delay = 0; // play one note every quarter second
+          var note = 50; // the MIDI note
+          var velocity = 127; // how hard the note hits
+          // play the note
+          MIDI.setVolume(0, 127);
+          MIDI.noteOn(0, note, velocity, delay);
+          MIDI.noteOff(0, note, delay + 0.75);
+          console.log("played note");
+      }
+  });
+  };
+  </script>
+</body>
+
+<div id="app"></div>
+
+<br>
+<br>
+
+<div class = "buttonContainer" id="buttonContainer"></div>
